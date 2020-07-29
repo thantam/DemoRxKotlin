@@ -15,6 +15,7 @@ class DetailPresenter(private val userRepository: UserRepository) : BasePresente
         val startTime = System.nanoTime()
         userRepository.getDetails(id)
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
                     detailsModel ->
                     view?.hideLoading()
